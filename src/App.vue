@@ -12,8 +12,7 @@ export default {
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <pre>{{ store }}</pre>
+  <router-view></router-view>
 </template>
 
 <style>
