@@ -1,11 +1,19 @@
 <script>
+import { useStore } from './stores/main'
 export default {
-  name: 'App'
+  name: 'App',
+  setup() {
+    const store = useStore()
+    return {
+      store
+    }
+  }
 }
 </script>
 
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
+  <pre>{{ store }}</pre>
 </template>
 
 <style>
