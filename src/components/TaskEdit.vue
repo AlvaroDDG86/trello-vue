@@ -15,8 +15,15 @@ export default {
             descriptionRef.value = oldValue.description ? oldValue.description : ''
         }, { immediate: true })
 
+        function submitHandler(event) {
+            event.preventDefault()
+            console.log(descriptionRef.value)
+
+        }
+
         return {
-            descriptionRef
+            descriptionRef,
+            submitHandler
         }
     }
 }
@@ -28,6 +35,9 @@ export default {
             <label for="desc">Description:</label>
             <textarea id="desc" rows="4" v-model="descriptionRef" />
         </div>
+        <button class="button" type="submit">
+            Save
+        </button>
     </form>
 </template>
 
@@ -37,13 +47,17 @@ export default {
 }
 
 .form-control {
-    @apply flex flex-col justify-between items-center
+    @apply flex flex-col justify-between items-start
 }
 label {
     @apply font-bold text-sm text-gray-700
 }
 textarea {
-    @apply p-2 border-2 border-green-300 shadow-xl rounded;
+    @apply p-2 border-2 border-green-600 shadow-xl rounded w-full;
     @apply focus:border-green-500
+}
+.button {
+    @apply px-4 py-2 text-white bg-green-600 rounded shadow-sm border-2 border-transparent w-full my-2;
+    @apply hover:text-green-600 hover:bg-white hover:border-green-600;
 }
 </style>

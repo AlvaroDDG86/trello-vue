@@ -1,6 +1,7 @@
 <script>
 import { mainStore } from '../stores/main'
 import Column from "../components/Column.vue"
+import ColumnNew from "../components/ColumnNew.vue"
 import Modal from '../components/Modal.vue'
 import TaskEdit from '../components/TaskEdit.vue'
 import { ref, computed } from 'vue'
@@ -8,6 +9,7 @@ export default {
     name: 'Table',
     components: {
         Column,
+        ColumnNew,
         Modal,
         TaskEdit
     },
@@ -39,11 +41,9 @@ export default {
 </script>
 <template>
     <div class="content">
-        <div v-if="columns.length > 0" class="content__columns">
+        <div class="content__columns">
             <Column v-for="(column, idx) of columns" :key="idx" :column="column" @selectTask="selectTask" />
-        </div>
-        <div v-else>
-            There is no columns
+            <ColumnNew />
         </div>
     </div>
     <Modal v-if="showModal" @close="toggleModal">

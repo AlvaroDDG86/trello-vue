@@ -58,7 +58,7 @@ export default {
 }
 
 .modal {
-  @apply bg-white shadow-sm overflow-x-auto flex flex-col z-20;
+  @apply bg-white shadow-sm overflow-x-auto flex flex-col z-20 w-80;
 }
 
 .modal__header,
