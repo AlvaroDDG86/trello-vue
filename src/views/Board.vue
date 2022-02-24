@@ -1,13 +1,18 @@
 <script>
+import { ref, computed } from 'vue'
 import { mainStore } from '../stores/main'
+import { uiStore } from '../stores/ui'
+// Components
 import Column from "../components/Column.vue"
 import ColumnNew from "../components/ColumnNew.vue"
 import Modal from '../components/Modal.vue'
+import TheAside from '../components/TheAside.vue'
 import TaskEdit from '../components/TaskEdit.vue'
-import { ref, computed } from 'vue'
+
 export default {
     name: 'Table',
     components: {
+        TheAside,
         Column,
         ColumnNew,
         Modal,
@@ -15,7 +20,9 @@ export default {
     },
     setup() {
         const store = mainStore()
+        const storeUi = uiStore()
         const columns = computed(() => store.data)
+        const widthBoard = computed(() => storeUi.asideOpen ? '16rem' : '2rem')
         const showModal = ref(false)
         const taskEdit = ref(null)
 
@@ -49,6 +56,7 @@ export default {
         return {
             columns,
             showModal,
+            widthBoard,
             taskEdit,
             selectTask,
             toggleModal,
@@ -63,6 +71,7 @@ export default {
 </script>
 <template>
     <div class="content">
+        <TheAside />
         <div class="content__columns">
             <Column
                 v-for="(column, idx) of columns"
@@ -85,11 +94,12 @@ export default {
 </template>
 <style lang="postcss" scoped>
 .content {
-  @apply w-full overflow-auto bg-blue-500 relative;
+  @apply w-full overflow-auto bg-blue-500 relative duration-300;
+  width: calc(100vw - v-bind(widthBoard));
   min-height: calc(100vh - 4rem);
 }
 
 .content__columns {
-  @apply flex flex-row items-start justify-start p-8;
+  @apply flex flex-row items-start justify-start p-8 w-fit;
 }
 </style>
