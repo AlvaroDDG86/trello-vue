@@ -15,6 +15,7 @@ export default {
     setup(props, { emit }) {
         const taskName = ref('')
         function enterHandler() {
+            if (taskName.value === '') return
             emit('create-task', {
                 title: taskName.value,
                 column: props.column.title
@@ -22,8 +23,8 @@ export default {
             taskName.value = ''
         }
         function removeHandler() {
-            emit('remove', props.column.title)
-            taskName.value = ''
+            const res = window.confirm("Are you sure to delete this column?");
+            if (res) emit('remove', props.column.title)
         }
         return {
             taskName,
@@ -38,7 +39,7 @@ export default {
     <h3 class="column__title">{{ column.title }}</h3>
     <button class="column__remove" @click="removeHandler">-</button>
     <Task v-for="(task, idx) in column.tasks" :key="idx" :task="task" @select="$emit('select-task', $event)" />
-    <input class="column__input" @keyup.enter="enterHandler" v-model="taskName" type="text" placeholder="New task">
+    <input class="column__input" @keyup.enter="enterHandler" v-model="taskName" type="text" placeholder="New task" required>
 </section>
 </template>
 <style lang="postcss" scoped>
@@ -53,6 +54,6 @@ export default {
     @apply absolute top-1 right-1 text-white bg-red-400 rounded w-7 h-7 shadow-xl
 }
 .column__input {
-    @apply px-3 py-2 rounded bg-black bg-opacity-10 w-full outline outline-offset-0 outline-0;
+    @apply px-3 py-2 rounded bg-black bg-opacity-10 w-full outline outline-offset-0 outline-0 mt-4;
 }
 </style>

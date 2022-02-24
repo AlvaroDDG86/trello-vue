@@ -34,6 +34,11 @@ export const mainStore = defineStore("main", {
           }
         })
       });
+    },
+    removeTask(id) {
+      this.data.forEach(element => {
+        element.tasks = element.tasks.filter(task => task.id !== id)
+      });
     }
   }
 })

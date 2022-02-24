@@ -6,6 +6,7 @@ export default {
     setup(_, { emit }) {
         const columnName = ref('')
         function enterHandler() {
+            if (columnName.value === '') return
             emit('create', columnName.value)
             columnName.value = ''
         }
@@ -18,7 +19,7 @@ export default {
 </script>
 <template>
 <section class="column-new">
-    <h3 class="column-new__title">Add new column</h3>
+    <h3 class="column-new__title">New column</h3>
     <input class="column-new__input" @keyup.enter="enterHandler" v-model="columnName" type="text" placeholder="New column name...">
 </section>
 </template>

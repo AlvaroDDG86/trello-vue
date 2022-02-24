@@ -42,6 +42,10 @@ export default {
             showModal.value = false
             store.editTask(payload)
         }
+        function removeTaskhandler(id) {
+            showModal.value = false
+            store.removeTask(id)
+        }
         return {
             columns,
             showModal,
@@ -51,7 +55,8 @@ export default {
             createHandler,
             removeHandler,
             saveHandler,
-            createTaskHandler
+            createTaskHandler,
+            removeTaskhandler
         }
     }
 }
@@ -71,7 +76,11 @@ export default {
         </div>
     </div>
     <Modal v-if="showModal" @close="toggleModal">
-        <TaskEdit :task="taskEdit" @save="saveHandler" />
+        <TaskEdit
+            :task="taskEdit"
+            @save="saveHandler"
+            @delete="removeTaskhandler"
+        />
     </Modal> 
 </template>
 <style lang="postcss" scoped>

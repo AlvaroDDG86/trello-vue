@@ -29,16 +29,6 @@ export default {
                 <slot>
                 </slot>
             </section>
-
-            <footer class="modal__footer">
-                <button
-                type="button"
-                class="btn-green"
-                @click="close"
-                >
-                Close
-                </button>
-            </footer>
             </div>
         </div>
     </transition>
@@ -58,20 +48,15 @@ export default {
 }
 
 .modal {
-  @apply bg-white shadow-sm overflow-x-auto flex flex-col z-20 w-80;
+  @apply bg-white shadow-sm overflow-x-auto flex flex-col z-20 w-80 rounded;
 }
 
-.modal__header,
-.modal__footer {
+.modal__header{
   @apply p-4 flex;
 }
 
 .modal__header {
   @apply justify-between relative;
-}
-
-.modal__footer {
-  @apply flex-col justify-end;
 }
 
 .modal__body {
