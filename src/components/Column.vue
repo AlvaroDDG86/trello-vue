@@ -16,7 +16,7 @@ export default {
 <template>
 <section class="column">
     <h3 class="column__title">{{ column.title }}</h3>
-    <Task v-for="(task, idx) in column.tasks" :key="idx" :task="task" />
+    <Task v-for="(task, idx) in column.tasks" :key="idx" :task="task" @select="$emit('select-task', $event)" />
 </section>
 </template>
 <style lang="postcss" scoped>

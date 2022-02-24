@@ -26,11 +26,7 @@ export default {
             </header>
 
             <section class="modal__body">
-                <slot name="title">
-                    <h4>This is the default title!</h4>
-                </slot>
-                <slot name="body">
-                <p>This is the default body!</p>
+                <slot>
                 </slot>
             </section>
 
@@ -40,7 +36,7 @@ export default {
                 class="btn-green"
                 @click="close"
                 >
-                Close Modal
+                Close
                 </button>
             </footer>
             </div>

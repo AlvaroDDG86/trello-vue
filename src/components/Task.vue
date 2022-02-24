@@ -6,11 +6,20 @@ export default {
             type: Object,
             default: () => {}
         }
+    },
+    setup(props, { emit }) {
+        function clickHandler() {
+            emit('select', props.task)
+        }
+
+        return {
+            clickHandler
+        }
     }
 }
 </script>
 <template>
-<div class="task">
+<div class="task" @click="clickHandler">
     <h4 class="task__title">{{ task.title }}</h4>
     <p v-if="task.description" class="task__desc">
         {{ task.description }}
