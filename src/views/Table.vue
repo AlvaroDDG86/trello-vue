@@ -4,10 +4,12 @@ export default {
 }
 </script>
 <template>
-    <div>
+    <div class="content">
         Table
     </div>
 </template>
-<style lang="scss" scoped>
-
+<style lang="postcss" scoped>
+.content {
+    
+}
 </style>

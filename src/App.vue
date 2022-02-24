@@ -1,7 +1,11 @@
 <script>
 import { useStore } from './stores/main'
+import TheHeader from './components/TheHeader.vue'
 export default {
   name: 'App',
+  components: {
+    TheHeader
+  },
   setup() {
     const store = useStore()
     return {
@@ -12,19 +16,12 @@ export default {
 </script>
 
 <template>
- <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+  <TheHeader />
   <router-view></router-view>
 </template>
 
-<style>
+<style lang="postcss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  @apply w-screen h-screen bg-blue-500;
 }
 </style>
