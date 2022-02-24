@@ -28,8 +28,8 @@ export default {
 </template>
 <style lang="postcss" scoped>
 .task {
-    @apply bg-white px-2 py-1 rounded-lg my-4 cursor-pointer shadow-md;
-    @apply hover:bg-slate-100
+    @apply bg-white px-2 py-1 rounded my-4 cursor-pointer shadow-md;
+    @apply hover:bg-slate-100 duration-300;
 }
 .task__title {
     @apply text-xl font-semibold text-gray-800 truncate;

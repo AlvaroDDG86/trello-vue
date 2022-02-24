@@ -22,6 +22,6 @@ export default {
     @apply flex justify-evenly items-center border-white border-2;
 }
 .navbar__link {
-    @apply font-bold hover:text-green-800 hover:bg-slate-50 hover:shadow-2xl cursor-pointer px-2 py-1;
+    @apply font-bold hover:text-green-800 hover:bg-slate-50 hover:shadow-2xl cursor-pointer px-2 py-1 duration-300;
 }
 </style>

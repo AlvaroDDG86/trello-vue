@@ -46,7 +46,7 @@ export default {
 .column {
     min-width: 350px;
     max-width: 450px;
-    @apply bg-slate-200 shadow-xl px-2 py-1 rounded-lg mx-4 relative;
+    @apply bg-slate-200 shadow-xl px-2 py-1 rounded mx-4 relative;
 }
 .column__title {
     @apply text-2xl font-bold;
