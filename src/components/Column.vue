@@ -45,6 +45,7 @@ export default {
 <style lang="postcss" scoped>
 .column {
     min-width: 350px;
+    max-width: 450px;
     @apply bg-slate-200 shadow-xl px-2 py-1 rounded-lg mx-4 relative;
 }
 .column__title {

@@ -55,7 +55,7 @@ export default {
 
 <style lang="postcss" scoped>
 .task__title {
-    @apply text-xl font-bold text-center
+    @apply text-xl font-bold truncate;
 }
 
 .form-control {

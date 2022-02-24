@@ -32,7 +32,7 @@ export default {
     @apply hover:bg-slate-100
 }
 .task__title {
-    @apply text-xl font-semibold text-gray-800 text-center
+    @apply text-xl font-semibold text-gray-800 truncate;
 }
 
 .task_description {
