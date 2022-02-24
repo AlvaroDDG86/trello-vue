@@ -32,6 +32,9 @@ export default {
         function createHandler(name) {
             store.addColumn(name)
         }
+        function removeHandler(name) {
+            store.removeColumn(name)
+        }
         function createTaskHandler(payload) {
             store.addTask(payload)
         }
@@ -46,6 +49,7 @@ export default {
             selectTask,
             toggleModal,
             createHandler,
+            removeHandler,
             saveHandler,
             createTaskHandler
         }
@@ -59,6 +63,7 @@ export default {
                 v-for="(column, idx) of columns"
                 :key="idx"
                 :column="column"
+                @remove="removeHandler"
                 @selectTask="selectTask"
                 @createTask="createTaskHandler"
                 />

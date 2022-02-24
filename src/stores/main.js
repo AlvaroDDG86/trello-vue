@@ -12,6 +12,9 @@ export const mainStore = defineStore("main", {
     addColumn(name) {
       this.data.push({ title: name, tasks: []})
     },
+    removeColumn(name) {
+      this.data = this.data.filter(column => column.title !== name)
+    },
     addTask({ title, column }) {
       this.data.forEach(element => {
         if (element.title === column) {
