@@ -1,4 +1,5 @@
 <script>
+import { ref } from "vue"
 import Task from "./Task.vue"
 export default {
     name: 'Column',
@@ -10,6 +11,20 @@ export default {
             type: Object,
             default: () => {}
         }
+    },
+    setup(props, { emit }) {
+        const taskName = ref('')
+        function enterHandler() {
+            emit('create-task', {
+                title: taskName.value,
+                column: props.column.title
+            })
+            taskName.value = ''
+        }
+        return {
+            taskName,
+            enterHandler
+        }
     }
 }
 </script>
@@ -17,6 +32,7 @@ export default {
 <section class="column">
     <h3 class="column__title">{{ column.title }}</h3>
     <Task v-for="(task, idx) in column.tasks" :key="idx" :task="task" @select="$emit('select-task', $event)" />
+    <input class="column__input" @keyup.enter="enterHandler" v-model="taskName" type="text" placeholder="New task">
 </section>
 </template>
 <style lang="postcss" scoped>
@@ -26,5 +42,8 @@ export default {
 }
 .column__title {
     @apply text-2xl font-bold;
+}
+.column__input {
+    @apply px-3 py-2 rounded bg-black bg-opacity-10 w-full outline outline-offset-0 outline-0;
 }
 </style>

@@ -9,7 +9,7 @@ export default {
             required: true
         }
     },
-    setup(props) {
+    setup(props, { emit }) {
         const descriptionRef = ref('')
         watch(() => props.task, (oldValue) => {
             descriptionRef.value = oldValue.description ? oldValue.description : ''
@@ -17,8 +17,10 @@ export default {
 
         function submitHandler(event) {
             event.preventDefault()
-            console.log(descriptionRef.value)
-
+            emit('save', {
+                id: props.task.id,
+                desc: descriptionRef.value
+            })
         }
 
         return {

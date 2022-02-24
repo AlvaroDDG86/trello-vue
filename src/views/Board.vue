@@ -19,8 +19,8 @@ export default {
         const showModal = ref(false)
         const taskEdit = ref(null)
 
-        store.$subscribe((state) => {
-            localStorage.setItem('board', JSON.stringify(state))
+        store.$subscribe((mutation, state) => {
+            localStorage.setItem('board', JSON.stringify(state.data))
         })
         function toggleModal() {
             showModal.value = false
@@ -29,12 +29,25 @@ export default {
             showModal.value = true
             taskEdit.value = task
         }
+        function createHandler(name) {
+            store.addColumn(name)
+        }
+        function createTaskHandler(payload) {
+            store.addTask(payload)
+        }
+        function saveHandler(payload) {
+            showModal.value = false
+            store.editTask(payload)
+        }
         return {
             columns,
             showModal,
             taskEdit,
             selectTask,
-            toggleModal
+            toggleModal,
+            createHandler,
+            saveHandler,
+            createTaskHandler
         }
     }
 }
@@ -42,12 +55,18 @@ export default {
 <template>
     <div class="content">
         <div class="content__columns">
-            <Column v-for="(column, idx) of columns" :key="idx" :column="column" @selectTask="selectTask" />
-            <ColumnNew />
+            <Column
+                v-for="(column, idx) of columns"
+                :key="idx"
+                :column="column"
+                @selectTask="selectTask"
+                @createTask="createTaskHandler"
+                />
+            <ColumnNew @create="createHandler"/>
         </div>
     </div>
     <Modal v-if="showModal" @close="toggleModal">
-        <TaskEdit :task="taskEdit" />
+        <TaskEdit :task="taskEdit" @save="saveHandler" />
     </Modal> 
 </template>
 <style lang="postcss" scoped>
@@ -57,6 +76,6 @@ export default {
 }
 
 .content__columns {
-  @apply flex flex-row items-start justify-around p-8;
+  @apply flex flex-row items-start justify-start p-8;
 }
 </style>

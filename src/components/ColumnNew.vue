@@ -3,10 +3,10 @@ import { ref } from "vue"
 import Task from "./Task.vue"
 export default {
     name: 'ColumnNew',
-    setup() {
+    setup(_, { emit }) {
         const columnName = ref('')
         function enterHandler() {
-            console.log(columnName.value)
+            emit('create', columnName.value)
             columnName.value = ''
         }
         return {
