@@ -1,16 +1,10 @@
 <script>
-import { useStore } from './stores/main'
+
 import TheHeader from './components/TheHeader.vue'
 export default {
   name: 'App',
   components: {
     TheHeader
-  },
-  setup() {
-    const store = useStore()
-    return {
-      store
-    }
   }
 }
 </script>
@@ -22,6 +16,6 @@ export default {
 
 <style lang="postcss">
 #app {
-  @apply w-screen h-screen bg-blue-500;
+  @apply w-full h-screen;
 }
 </style>

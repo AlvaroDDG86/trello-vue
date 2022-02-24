@@ -54,6 +54,36 @@ const data = {
                     id: Math.random().toString()
                 }
             ]
+        },
+        {
+            title: 'Done',
+            tasks: [
+                {
+                    title: 'Task 5',
+                    description: 'Trying new things',
+                    id: Math.random().toString()
+                },
+                {
+                    title: 'Task 6',
+                    description: 'Trying new things',
+                    id: Math.random().toString()
+                }
+            ]
+        },
+        {
+            title: 'Done',
+            tasks: [
+                {
+                    title: 'Task 5',
+                    description: 'Trying new things',
+                    id: Math.random().toString()
+                },
+                {
+                    title: 'Task 6',
+                    description: 'Trying new things',
+                    id: Math.random().toString()
+                }
+            ]
         }
     ]
 }
