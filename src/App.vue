@@ -1,10 +1,23 @@
 <script>
-
+import { ref } from 'vue'
+import Modal from './components/Modal.vue'
 import TheHeader from './components/TheHeader.vue'
 export default {
   name: 'App',
   components: {
-    TheHeader
+    TheHeader,
+    Modal
+  },
+  setup() {
+    const showModal = ref(true)
+    function toggleModal() {
+      showModal.value = !showModal.value
+    }
+
+    return {
+      showModal,
+      toggleModal
+    }
   }
 }
 </script>
@@ -12,6 +25,7 @@ export default {
 <template>
   <TheHeader />
   <router-view></router-view>
+  <Modal v-if="showModal" @close="toggleModal" />
 </template>
 
 <style lang="postcss">
