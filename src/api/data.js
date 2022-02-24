@@ -20,7 +20,7 @@ const data = {
                 },
                 {
                     title: 'Task 2',
-                    description: 'Trying new things',
+                    description: null,
                     id: Math.random().toString()
                 }
             ]
@@ -30,7 +30,7 @@ const data = {
             tasks: [
                 {
                     title: 'Task 3',
-                    description: 'Trying new things',
+                    description: null,
                     id: Math.random().toString()
                 },
                 {

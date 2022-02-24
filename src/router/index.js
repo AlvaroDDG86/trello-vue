@@ -1,9 +1,9 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import Table from '../views/Table.vue'
+import Board from '../views/Board.vue'
 
 const routes = [{
     path: "/",
-    component: Table
+    component: Board
 }];
 
 const router = createRouter({

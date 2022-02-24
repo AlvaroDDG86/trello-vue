@@ -12,7 +12,7 @@ export default {
 <template>
 <div class="task">
     <h4 class="task__title">{{ task.title }}</h4>
-    <p class="task__desc">
+    <p v-if="task.description" class="task__desc">
         {{ task.description }}
     </p>
 </div>

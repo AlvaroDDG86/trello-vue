@@ -1,10 +1,13 @@
 import { defineStore } from "pinia";
 import data from "../api/data";
+const defaultBoard = data.columns
 
-export const useStore = defineStore("main", {
+const board = JSON.parse(localStorage.getItem('board')) || defaultBoard
+
+export const mainStore = defineStore("main", {
   state: () => {
     return {
-        data: data.columns
+        data: board
     };
-  },
-});
+  }
+})
