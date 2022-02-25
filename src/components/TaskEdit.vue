@@ -10,15 +10,17 @@ export default {
         }
     },
     setup(props, { emit }) {
+        const titleRef = ref('')
         const descriptionRef = ref('')
         watch(() => props.task, (oldValue) => {
+            titleRef.value = oldValue.title ? oldValue.title : ''
             descriptionRef.value = oldValue.description ? oldValue.description : ''
         }, { immediate: true })
 
-        function submitHandler(event) {
-            event.preventDefault()
+        function submitHandler() {
             emit('save', {
                 id: props.task.id,
+                title: titleRef.value,
                 desc: descriptionRef.value
             })
         }
@@ -28,6 +30,7 @@ export default {
         }
 
         return {
+            titleRef,
             descriptionRef,
             submitHandler,
             deleteHandler
@@ -37,7 +40,11 @@ export default {
 </script>
 <template>
     <h1 class="task__title">{{ task.title }}</h1>
-    <form @submit="submitHandler">
+    <form @submit.prevent="submitHandler">
+        <div class="form-control">
+            <label for="title">Title:</label>
+            <input id="title" type="text" v-model="titleRef" />
+        </div>
         <div class="form-control">
             <label for="desc">Description:</label>
             <textarea id="desc" rows="4" v-model="descriptionRef" />
@@ -64,8 +71,8 @@ export default {
 label {
     @apply font-bold text-sm text-gray-700
 }
-textarea {
-    @apply p-2 border-2 border-green-600 shadow-xl rounded w-full;
+input, textarea {
+    @apply p-2 border-2 border-green-600 shadow-sm rounded w-full;
     @apply focus:border-green-500
 }
 

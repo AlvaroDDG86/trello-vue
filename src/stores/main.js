@@ -38,10 +38,11 @@ export const mainStore = defineStore("main", {
         }
       });
     },
-    editTask({ id, desc }) {
+    editTask({ id, desc, title }) {
       this.data.forEach(element => {
         element.tasks.forEach(task => {
           if (task.id === id) {
+            task.title = title
             task.description = desc
           }
         })
