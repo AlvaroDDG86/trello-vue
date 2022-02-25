@@ -28,6 +28,7 @@ export default {
 <div
     class="task"
     @click="clickHandler"
+    :data-id="task.id"
     >
     <h4 class="task__title">{{ task.title }}</h4>
     <p v-if="task.description" class="task__desc">

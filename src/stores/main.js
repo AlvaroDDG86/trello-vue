@@ -61,6 +61,24 @@ export const mainStore = defineStore("main", {
         }
       })
     },
+    moveTaskInColumn({ taskId, taskToId, columnToId, columnFromId }) {
+      if (columnToId !== columnFromId) {
+        this.moveTask({
+          columnFromId,
+          columnToId,
+          taskId
+        })
+      } else {
+        this.data.forEach(col => {
+          if (col.id === columnToId) {
+            const idxTo = col.tasks.findIndex(task => task.id === taskToId)
+            const idxFrom = col.tasks.findIndex(task => task.id === taskId)
+            const currentTask = col.tasks.splice(idxFrom, 1)[0]
+            col.tasks.splice(idxTo, 0, currentTask)
+          }
+        })
+      }
+    },
     removeTask(id) {
       this.data.forEach(element => {
         element.tasks = element.tasks.filter(task => task.id !== id)

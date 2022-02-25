@@ -56,6 +56,9 @@ export default {
         function moveTaskHandler(data) {
             store.moveTask(data)
         }
+        function moveTaskInColumnHandler(data) {
+            store.moveTaskInColumn(data)
+        }
         function moveColumnHandler(data) {
             store.moveColumn(data)
         }
@@ -72,6 +75,7 @@ export default {
             createTaskHandler,
             removeTaskhandler,
             moveTaskHandler,
+            moveTaskInColumnHandler,
             moveColumnHandler
         }
     }
@@ -87,6 +91,7 @@ export default {
                 :column="column"
                 @remove="removeHandler"
                 @moveTask="moveTaskHandler"
+                @moveTaskInColumn="moveTaskInColumnHandler"
                 @moveColumn="moveColumnHandler"
                 @selectTask="selectTask"
                 @createTask="createTaskHandler"
