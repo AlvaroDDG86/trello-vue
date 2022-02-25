@@ -6,29 +6,29 @@ const defaultBoard = data.columns
 
 const board = JSON.parse(localStorage.getItem('board')) || defaultBoard
 
-export const mainStore = defineStore("main", {
+export const boardStore = defineStore("board", {
   state: () => ({
-    data: board
+    columns: board
   }),
   actions: {
     addColumn(name) {
-      this.data.push({
+      this.columns.push({
         id: UID(),
         title: name,
         tasks: []
       })
     },
     removeColumn(id) {
-      this.data = this.data.filter(column => column.id !== id)
+      this.columns = this.columns.filter(column => column.id !== id)
     },
     moveColumn({ columnId, columnToId }) {
-      const indexToMove = this.data.findIndex(col => col.id === columnToId)
-      const indexFromMove = this.data.findIndex(col => col.id === columnId)
-      const columnToMove = this.data.splice(indexFromMove, 1)[0]
-      this.data.splice(indexToMove, 0, columnToMove)
+      const indexToMove = this.columns.findIndex(col => col.id === columnToId)
+      const indexFromMove = this.columns.findIndex(col => col.id === columnId)
+      const columnToMove = this.columns.splice(indexFromMove, 1)[0]
+      this.columns.splice(indexToMove, 0, columnToMove)
     },
     addTask({ title, columnId }) {
-      this.data.forEach(col => {
+      this.columns.forEach(col => {
         if (col.id === columnId) {
           col.tasks.push({
             title: title,
@@ -39,7 +39,7 @@ export const mainStore = defineStore("main", {
       });
     },
     editTask({ id, desc, title }) {
-      this.data.forEach(element => {
+      this.columns.forEach(element => {
         element.tasks.forEach(task => {
           if (task.id === id) {
             task.title = title
@@ -50,13 +50,13 @@ export const mainStore = defineStore("main", {
     },
     moveTask({ columnFromId, columnToId, taskId }) {
       let currentTask
-      this.data.forEach(col => {
+      this.columns.forEach(col => {
         if (col.id === columnFromId) {
           const idx = col.tasks.findIndex(task => task.id === taskId)
           currentTask = col.tasks.splice(idx, 1)[0]
         }
       })
-      this.data.forEach(col => {
+      this.columns.forEach(col => {
         if (col.id === columnToId) {
           col.tasks.push(currentTask)
         }
@@ -70,7 +70,7 @@ export const mainStore = defineStore("main", {
           taskId
         })
       } else {
-        this.data.forEach(col => {
+        this.columns.forEach(col => {
           if (col.id === columnToId) {
             const idxTo = col.tasks.findIndex(task => task.id === taskToId)
             const idxFrom = col.tasks.findIndex(task => task.id === taskId)
@@ -81,7 +81,7 @@ export const mainStore = defineStore("main", {
       }
     },
     removeTask(id) {
-      this.data.forEach(element => {
+      this.columns.forEach(element => {
         element.tasks = element.tasks.filter(task => task.id !== id)
       });
     }

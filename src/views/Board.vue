@@ -1,6 +1,6 @@
 <script>
 import { ref, computed } from 'vue'
-import { mainStore } from '../stores/main'
+import { boardStore } from '../stores/board'
 import { uiStore } from '../stores/ui'
 // Components
 import Column from "../components/Column.vue"
@@ -19,9 +19,9 @@ export default {
         TaskEdit
     },
     setup() {
-        const store = mainStore()
+        const store = boardStore()
         const storeUi = uiStore()
-        const columns = computed(() => store.data)
+        const columns = computed(() => store.columns)
         const widthBoard = computed(() => storeUi.asideOpen ? '16rem' : '2rem')
         const showModal = ref(false)
         const taskEdit = ref(null)

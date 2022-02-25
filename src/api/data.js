@@ -59,38 +59,6 @@ const data = {
                     id: UID()
                 }
             ]
-        },
-        {
-            id: UID(),
-            title: 'Done',
-            tasks: [
-                {
-                    title: 'Task 5',
-                    description: 'Trying new things',
-                    id: UID()
-                },
-                {
-                    title: 'Task 6',
-                    description: 'Trying new things',
-                    id: UID()
-                }
-            ]
-        },
-        {
-            id: UID(),
-            title: 'Done',
-            tasks: [
-                {
-                    title: 'Task 5',
-                    description: 'Trying new things',
-                    id: UID()
-                },
-                {
-                    title: 'Task 6',
-                    description: 'Trying new things',
-                    id: UID()
-                }
-            ]
         }
     ]
 }
