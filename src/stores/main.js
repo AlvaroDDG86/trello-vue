@@ -21,6 +21,12 @@ export const mainStore = defineStore("main", {
     removeColumn(id) {
       this.data = this.data.filter(column => column.id !== id)
     },
+    moveColumn({ columnId, columnToId }) {
+      const indexToMove = this.data.findIndex(col => col.id === columnToId)
+      const indexFromMove = this.data.findIndex(col => col.id === columnId)
+      const columnToMove = this.data.splice(indexFromMove, 1)[0]
+      this.data.splice(indexToMove, 0, columnToMove)
+    },
     addTask({ title, columnId }) {
       this.data.forEach(col => {
         if (col.id === columnId) {

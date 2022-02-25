@@ -30,16 +30,27 @@ export default {
             event.preventDefault();
             if (!event.srcElement.classList.contains('column')) return
             let taskId = event.dataTransfer.getData("task-id");
-            let columnFromId = event.dataTransfer.getData("from-column-id");
-            
-            emit('move-task', {
-                columnFromId,
-                taskId,
-                columnToId: event.target.dataset.id
-            })
+            if (taskId) {
+                let columnFromId = event.dataTransfer.getData("from-column-id");
+                emit('move-task', {
+                    columnFromId,
+                    taskId,
+                    columnToId: event.target.dataset.id
+                })
+            } else {
+                const columnId =  event.dataTransfer.getData('column-id')
+                console.log(event.target.dataset.id)
+                emit('move-column', {
+                    columnId,
+                    columnToId: event.target.dataset.id
+                })
+            }
+            event.dataTransfer.clearData()
         }
-        function allowDropHandler(event) {
-            event.preventDefault();
+        function dragstartColumnHandler(event, columnId) {
+            event.dataTransfer.effectAllowed = 'move'
+            event.dataTransfer.dropEffect = 'move'
+            event.dataTransfer.setData('column-id', columnId)
         }
         function dragstartHandler(event, taskId) {
             event.dataTransfer.effectAllowed = 'move'
@@ -52,16 +63,18 @@ export default {
             enterHandler,
             removeHandler,
             dropHandler,
-            allowDropHandler,
-            dragstartHandler
+            dragstartHandler,
+            dragstartColumnHandler
         }
     }
 }
 </script>
 <template>
 <section 
+    :draggable="true"
     @drop="dropHandler"
-    @dragover="allowDropHandler"
+    @dragover.prevent
+    @dragstart="dragstartColumnHandler($event, column.id)"
     :data-id="column.id"
     class="column">
     <h3 class="column__title">{{ column.title }}</h3>
@@ -81,7 +94,7 @@ export default {
 .column {
     min-width: 350px;
     max-width: 450px;
-    @apply bg-slate-200 shadow-xl px-2 py-1 rounded mx-4 relative;
+    @apply bg-slate-200 shadow-xl px-2 py-1 rounded mx-4 relative cursor-move;
 }
 .column__title {
     @apply text-2xl font-bold;

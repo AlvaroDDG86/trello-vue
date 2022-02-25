@@ -56,6 +56,9 @@ export default {
         function moveTaskHandler(data) {
             store.moveTask(data)
         }
+        function moveColumnHandler(data) {
+            store.moveColumn(data)
+        }
         return {
             columns,
             showModal,
@@ -68,7 +71,8 @@ export default {
             saveHandler,
             createTaskHandler,
             removeTaskhandler,
-            moveTaskHandler
+            moveTaskHandler,
+            moveColumnHandler
         }
     }
 }
@@ -83,6 +87,7 @@ export default {
                 :column="column"
                 @remove="removeHandler"
                 @moveTask="moveTaskHandler"
+                @moveColumn="moveColumnHandler"
                 @selectTask="selectTask"
                 @createTask="createTaskHandler"
                 />
