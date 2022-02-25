@@ -40,9 +40,11 @@ export default {
 .task {
     @apply bg-white px-2 py-1 rounded my-4 cursor-pointer shadow-md select-none;
     @apply hover:bg-slate-100 duration-300;
+    @apply dark:bg-slate-800 dark:text-slate-100;
 }
 .task__title {
     @apply text-xl font-semibold text-gray-800 truncate;
+    @apply dark:text-slate-100;
 }
 
 .task_description {

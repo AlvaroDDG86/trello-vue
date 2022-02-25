@@ -27,6 +27,7 @@ export default {
 .column-new {
     min-width: 350px;
     @apply bg-slate-200 shadow-xl px-2 py-1 rounded-lg mx-4;
+    @apply dark:bg-slate-700 dark:text-slate-200;
 }
 .column-new__title {
     @apply text-2xl font-bold mb-4;

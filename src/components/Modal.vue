@@ -49,6 +49,7 @@ export default {
 
 .modal {
   @apply bg-white shadow-sm overflow-x-auto flex flex-col z-20 w-80 rounded;
+  @apply dark:bg-slate-700 dark:text-slate-200;
 }
 
 .modal__header{

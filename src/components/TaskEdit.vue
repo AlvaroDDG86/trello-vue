@@ -66,17 +66,20 @@ export default {
 <style lang="postcss" scoped>
 .task__title {
     @apply text-xl font-bold truncate;
+    @apply dark:text-slate-200;
 }
 
 .form-control {
     @apply flex flex-col justify-between items-start
 }
 label {
-    @apply font-bold text-sm text-gray-700
+    @apply font-bold text-sm text-gray-700;
+    @apply dark:text-slate-200;
 }
 input, textarea {
     @apply p-2 border-2 border-green-600 shadow-sm rounded w-full;
-    @apply focus:border-green-500
+    @apply focus:border-green-500;
+    @apply dark:bg-slate-600 dark:text-slate-200;
 }
 
 .task__actions {
@@ -85,9 +88,11 @@ input, textarea {
 .button {
     @apply px-4 py-2 text-white bg-green-600 rounded shadow-sm border-2 border-transparent w-full m-2 flex justify-around items-center;
     @apply hover:text-green-600 hover:bg-white hover:border-green-600 duration-300;
+    @apply dark:bg-slate-700 dark:border-green-600;
 }
 .button--delete {
     @apply bg-red-600 my-2;
     @apply hover:text-red-600 hover:border-red-600;
+    @apply dark:border-red-600;
 }
 </style>

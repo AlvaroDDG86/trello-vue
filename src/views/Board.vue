@@ -110,6 +110,7 @@ export default {
 <style lang="postcss" scoped>
 .content {
   @apply w-full overflow-auto bg-blue-500 relative duration-300;
+  @apply dark:bg-blue-900;
   width: calc(100vw - v-bind(widthBoard));
   min-height: calc(100vh - 4rem);
 }
