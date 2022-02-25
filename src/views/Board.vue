@@ -27,7 +27,7 @@ export default {
         const taskEdit = ref(null)
 
         store.$subscribe((mutation, state) => {
-            localStorage.setItem('board', JSON.stringify(state.data))
+            localStorage.setItem('board', JSON.stringify(state.columns))
         })
         function toggleModal() {
             showModal.value = false

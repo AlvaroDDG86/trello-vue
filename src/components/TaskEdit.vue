@@ -18,6 +18,7 @@ export default {
         }, { immediate: true })
 
         function submitHandler() {
+            if (titleRef.value === '') return
             emit('save', {
                 id: props.task.id,
                 title: titleRef.value,
@@ -43,7 +44,7 @@ export default {
     <form @submit.prevent="submitHandler">
         <div class="form-control">
             <label for="title">Title:</label>
-            <input id="title" type="text" v-model="titleRef" />
+            <input id="title" type="text" v-model="titleRef" required/>
         </div>
         <div class="form-control">
             <label for="desc">Description:</label>

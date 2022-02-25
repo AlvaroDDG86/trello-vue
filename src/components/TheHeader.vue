@@ -9,7 +9,7 @@ export default {
         Trello Vue
     </div>
     <div class="navabar__menu">
-        <router-link class="navbar__link" to="/">Table</router-link>
+        <router-link class="navbar__link" to="/">Board</router-link>
         <router-link class="navbar__link" to="/user">User</router-link>
     </div>
 </nav>
