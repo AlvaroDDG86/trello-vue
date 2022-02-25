@@ -21,7 +21,7 @@ export default {
                 class="btn-close"
                 @click="close"
                 >
-                x
+                <fa icon="circle-xmark" />
                 </button>
             </header>
 

@@ -52,10 +52,12 @@ export default {
         </div>
         <div class="task__actions">
             <button class="button button--delete" type="button" @click="deleteHandler">
-                Delete
+                <span>Delete</span>
+                <fa icon="trash" />
             </button>
             <button class="button" type="submit">
-                Save
+                <span>Save</span>
+                <fa icon="save" />
             </button>
         </div>
     </form>
@@ -81,7 +83,7 @@ input, textarea {
     @apply flex justify-between items-center
 }
 .button {
-    @apply px-4 py-2 text-white bg-green-600 rounded shadow-sm border-2 border-transparent w-full m-2;
+    @apply px-4 py-2 text-white bg-green-600 rounded shadow-sm border-2 border-transparent w-full m-2 flex justify-around items-center;
     @apply hover:text-green-600 hover:bg-white hover:border-green-600 duration-300;
 }
 .button--delete {

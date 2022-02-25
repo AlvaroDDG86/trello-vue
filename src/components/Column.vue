@@ -91,7 +91,9 @@ export default {
     :data-id="column.id"
     class="column">
     <h3 class="column__title">{{ column.title }}</h3>
-    <button class="column__remove" @click="removeHandler">-</button>
+    <button class="column__remove" @click="removeHandler">
+        <fa icon="trash" />
+    </button>
     <Task
         v-for="(task, idx) in column.tasks"
         :key="idx"

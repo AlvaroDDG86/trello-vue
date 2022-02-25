@@ -6,7 +6,8 @@ export default {
 <template>
 <nav class="navbar">
     <div class="text-4xl font-bold">
-        Trello Vue
+        Trello Vue 
+        <fa icon="notes-medical" />
     </div>
     <div class="navabar__menu">
         <router-link class="navbar__link" to="/">Board</router-link>

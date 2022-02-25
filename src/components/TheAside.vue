@@ -5,7 +5,7 @@ export default {
     name: 'TheAside',
     setup() {
         const store = uiStore()
-        const direction = computed(() => store.asideOpen ? '>>' : '<<')
+        const direction = computed(() => store.asideOpen ? 'angles-right' : 'angles-left')
         const widthAside = computed(() => store.asideOpen ? '16rem' : '2rem')
         function toggleHanlder() {
             store.toggleAside()
@@ -20,7 +20,7 @@ export default {
 </script>
 <template>
 <aside class="aside">
-    <button class="aside__direction" @click="toggleHanlder">{{ direction }}</button>
+    <button class="aside__direction" @click="toggleHanlder"><fa :icon="direction" /></button>
 </aside>
 </template>
 <style lang="postcss">
@@ -31,6 +31,6 @@ export default {
 }
 
 .aside__direction {
-    @apply w-8 h-8 rounded text-white bg-gray-700 shadow-sm font-bold
+    @apply w-8 h-8 rounded text-white shadow-sm font-bold flex justify-center items-center
 }
 </style>
