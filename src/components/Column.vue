@@ -51,7 +51,7 @@ export default {
             event.preventDefault();
             if (!event.currentTarget.classList.contains('task')) return
             let taskId = event.dataTransfer.getData("task-id");
-            let columnFromId = event.dataTransfer.getData("from-column-id");
+            let columnFromId = event.dataTransfer.getData("column-id");
             emit('move-task-in-column', {
                 taskId,
                 taskToId: event.currentTarget.dataset.id,

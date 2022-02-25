@@ -38,7 +38,7 @@ export default {
 </template>
 <style lang="postcss">
 .aside {
-    @apply bg-blue-800 fixed right-0 z-30 drop-shadow-sm duration-300 flex justify-center items-center overflow-hidden duration-300;
+    @apply bg-blue-800 fixed right-0 z-30 drop-shadow-sm duration-300 flex justify-center items-center overflow-hidden;
     width: v-bind(widthAside);
     min-height: calc(100vh - 4rem);
 }

@@ -63,7 +63,12 @@ export const boardStore = defineStore("board", {
       })
     },
     moveTaskInColumn({ taskId, taskToId, columnToId, columnFromId }) {
-      if (columnToId !== columnFromId) {
+      if (!taskId) {
+        this.moveColumn({
+          columnId: columnFromId,
+          columnToId: columnToId
+        })
+      } else if (columnToId !== columnFromId) {
         this.moveTask({
           columnFromId,
           columnToId,
