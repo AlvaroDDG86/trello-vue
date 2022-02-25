@@ -18,13 +18,13 @@ export default {
             if (taskName.value === '') return
             emit('create-task', {
                 title: taskName.value,
-                column: props.column.title
+                columnId: props.column.id
             })
             taskName.value = ''
         }
         function removeHandler() {
             const res = window.confirm("Are you sure to delete this column?");
-            if (res) emit('remove', props.column.title)
+            if (res) emit('remove', props.column.id)
         }
         return {
             taskName,

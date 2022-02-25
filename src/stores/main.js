@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import data from "../api/data";
+import { UID } from "../utils/idGenerator";
 const defaultBoard = data.columns
+
 
 const board = JSON.parse(localStorage.getItem('board')) || defaultBoard
 
@@ -10,18 +12,22 @@ export const mainStore = defineStore("main", {
   }),
   actions: {
     addColumn(name) {
-      this.data.push({ title: name, tasks: []})
+      this.data.push({
+        id: UID(),
+        title: name,
+        tasks: []
+      })
     },
-    removeColumn(name) {
-      this.data = this.data.filter(column => column.title !== name)
+    removeColumn(id) {
+      this.data = this.data.filter(column => column.id !== id)
     },
-    addTask({ title, column }) {
-      this.data.forEach(element => {
-        if (element.title === column) {
-          element.tasks.push({
+    addTask({ title, columnId }) {
+      this.data.forEach(col => {
+        if (col.id === columnId) {
+          col.tasks.push({
             title: title,
             description: null,
-            id: Math.random().toString()
+            id: UID()
           })
         }
       });
@@ -34,6 +40,19 @@ export const mainStore = defineStore("main", {
           }
         })
       });
+    },
+    moveTask({ columnFromId, columnToId, taskId}) {
+      let currentTask
+      this.data.forEach(col => {
+        if (col.id === columnFromId) {
+          currentTask = col.tasks.splice(taskId, 1)
+        }
+      })
+      this.data.forEach(col => {
+        if (col.id === columnToId) {
+          col.tasks.push(currentTask)
+        }
+      })
     },
     removeTask(id) {
       this.data.forEach(element => {

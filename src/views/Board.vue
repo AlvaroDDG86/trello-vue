@@ -39,8 +39,8 @@ export default {
         function createHandler(name) {
             store.addColumn(name)
         }
-        function removeHandler(name) {
-            store.removeColumn(name)
+        function removeHandler(id) {
+            store.removeColumn(id)
         }
         function createTaskHandler(payload) {
             store.addTask(payload)
