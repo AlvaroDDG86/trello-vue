@@ -11,15 +11,24 @@ export default {
         function clickHandler() {
             emit('select', props.task)
         }
+        
+        function dragstartHandler(event) {
+            
+            emit('drag-task', props.taks.id)
+        }
 
         return {
-            clickHandler
+            clickHandler,
+            dragstartHandler
         }
     }
 }
 </script>
 <template>
-<div class="task" @click="clickHandler">
+<div
+    class="task"
+    @click="clickHandler"
+    >
     <h4 class="task__title">{{ task.title }}</h4>
     <p v-if="task.description" class="task__desc">
         {{ task.description }}
@@ -28,7 +37,7 @@ export default {
 </template>
 <style lang="postcss" scoped>
 .task {
-    @apply bg-white px-2 py-1 rounded my-4 cursor-pointer shadow-md;
+    @apply bg-white px-2 py-1 rounded my-4 cursor-pointer shadow-md select-none;
     @apply hover:bg-slate-100 duration-300;
 }
 .task__title {

@@ -26,19 +26,54 @@ export default {
             const res = window.confirm("Are you sure to delete this column?");
             if (res) emit('remove', props.column.id)
         }
+        function dropHandler(event) {
+            event.preventDefault();
+            if (!event.srcElement.classList.contains('column')) return
+            let taskId = event.dataTransfer.getData("task-id");
+            let columnFromId = event.dataTransfer.getData("from-column-id");
+            
+            emit('move-task', {
+                columnFromId,
+                taskId,
+                columnToId: event.target.dataset.id
+            })
+        }
+        function allowDropHandler(event) {
+            event.preventDefault();
+        }
+        function dragstartHandler(event, taskId) {
+            event.dataTransfer.effectAllowed = 'move'
+            event.dataTransfer.dropEffect = 'move'
+            event.dataTransfer.setData('task-id', taskId)
+            event.dataTransfer.setData('from-column-id', props.column.id)
+        }
         return {
             taskName,
             enterHandler,
-            removeHandler
+            removeHandler,
+            dropHandler,
+            allowDropHandler,
+            dragstartHandler
         }
     }
 }
 </script>
 <template>
-<section class="column">
+<section 
+    @drop="dropHandler"
+    @dragover="allowDropHandler"
+    :data-id="column.id"
+    class="column">
     <h3 class="column__title">{{ column.title }}</h3>
     <button class="column__remove" @click="removeHandler">-</button>
-    <Task v-for="(task, idx) in column.tasks" :key="idx" :task="task" @select="$emit('select-task', $event)" />
+    <Task
+        v-for="(task, idx) in column.tasks"
+        :key="idx"
+        :task="task"
+        :draggable="true"
+        @dragstart="dragstartHandler($event, task.id)"
+        @select="$emit('select-task', $event)"
+    />
     <input class="column__input" @keyup.enter="enterHandler" v-model="taskName" type="text" placeholder="New task" required>
 </section>
 </template>

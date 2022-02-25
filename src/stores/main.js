@@ -41,11 +41,12 @@ export const mainStore = defineStore("main", {
         })
       });
     },
-    moveTask({ columnFromId, columnToId, taskId}) {
+    moveTask({ columnFromId, columnToId, taskId }) {
       let currentTask
       this.data.forEach(col => {
         if (col.id === columnFromId) {
-          currentTask = col.tasks.splice(taskId, 1)
+          const idx = col.tasks.findIndex(task => task.id === taskId)
+          currentTask = col.tasks.splice(idx, 1)[0]
         }
       })
       this.data.forEach(col => {
